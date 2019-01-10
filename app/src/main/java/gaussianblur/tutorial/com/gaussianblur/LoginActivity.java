@@ -1,9 +1,15 @@
 package gaussianblur.tutorial.com.gaussianblur;
 
+import android.annotation.TargetApi;
+import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -32,7 +38,7 @@ public class LoginActivity extends AppCompatActivity {
         blur = new RenderScriptGaussianBlur(LoginActivity.this);
 
         initComponents();
-        establishBlur();
+        setStatusBarGradiant(this);
     }
 
     private void initComponents() {
@@ -40,19 +46,16 @@ public class LoginActivity extends AppCompatActivity {
         tvDescription.setTypeface(OverrideFonts.getTypeFace(getApplicationContext(), OverrideFonts.TYPE_FONT_NAME.HELVETICANEUE, OverrideFonts.TYPE_STYLE.LIGHT));
     }
 
-    private void establishBlur() {
-//        container.setVisibility(View.VISIBLE);
-//
-//        layout.measure(View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED),
-//                View.MeasureSpec.makeMeasureSpec(0, View.MeasureSpec.UNSPECIFIED));
-//        layout.layout(0, 0, layout.getMeasuredWidth(), layout.getMeasuredHeight());
-//
-//        layout.buildDrawingCache(true);
-//        layout.setDrawingCacheEnabled(true);
-//        layout.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
-//
-//        Bitmap bitmap = Bitmap.createBitmap(layout.getDrawingCache());
-//        container.setImageBitmap(blur.gaussianBlur(25, bitmap));
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public static void setStatusBarGradiant(Activity activity) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = activity.getWindow();
+            Drawable background = activity.getResources().getDrawable(R.drawable.custom_bg);
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(activity.getResources().getColor(android.R.color.transparent));
+//            window.setNavigationBarColor(activity.getResources().getColor(android.R.color.transparent));
+            window.setBackgroundDrawable(background);
+        }
     }
 
     @Override
