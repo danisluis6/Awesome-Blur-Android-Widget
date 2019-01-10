@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">GaussianBlur</string>
     <string name="label_hi">Hi!</string>
+    <string name="label_start">Let\'s Get Started</string>
+    <string name="hint_mobile_number">Mobile Number</string>
+    <string name="label_proceed">PROCEED</string>
 </resources>

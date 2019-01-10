@@ -36,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private void initComponents() {
+        tvHi.setTypeface(OverrideFonts.getTypeFace(getApplicationContext(), OverrideFonts.TYPE_FONT_NAME.HELVETICANEUE, OverrideFonts.TYPE_STYLE.BOLD));
         tvDescription.setTypeface(OverrideFonts.getTypeFace(getApplicationContext(), OverrideFonts.TYPE_FONT_NAME.HELVETICANEUE, OverrideFonts.TYPE_STYLE.LIGHT));
     }
 
